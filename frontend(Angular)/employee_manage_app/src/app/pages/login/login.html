@@ -1,0 +1,146 @@
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light">
+
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="max-width: 900px; width: 100%;">
+
+        <div class="row g-0">
+
+            <!-- Left Side -->
+            <div
+                class="col-md-6 bg-primary text-white d-flex flex-column justify-content-center align-items-center p-5">
+
+                <div class="text-center">
+
+                    <div class="bg-white text-primary rounded-circle d-inline-flex align-items-center justify-content-center shadow mb-4"
+                        style="width:90px;height:90px;">
+
+                        <i class="bi bi-person-workspace fs-1"></i>
+
+                    </div>
+
+                    <h2 class="fw-bold mb-3">
+                        Employee Portal
+                    </h2>
+
+                    <p class="opacity-75">
+                        Securely access your dashboard, manage employees, and stay productive.
+                    </p>
+
+                    <div class="mt-4">
+
+                        <span class="badge bg-light text-primary px-3 py-2 me-2 rounded-pill">
+                            <i class="bi bi-shield-check me-1"></i>
+                            Secure
+                        </span>
+
+                        <span class="badge bg-light text-primary px-3 py-2 rounded-pill">
+                            <i class="bi bi-lightning-charge me-1"></i>
+                            Fast
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Side -->
+            <div class="col-md-6 p-5">
+
+                <div class="text-center mb-4">
+
+                    <h3 class="fw-bold">
+                        Welcome Back
+                    </h3>
+
+                    <p class="text-muted">
+                        Log in to continue
+                    </p>
+
+                </div>
+
+                <form>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Email Address
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text bg-white">
+                                <i class="bi bi-envelope-fill text-primary"></i>
+                            </span>
+
+                            <input type="email" [(ngModel)]="loginObj.email" name="email" class="form-control"
+                                placeholder="Enter your email" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Contact Number
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text bg-white">
+                                <i class="bi bi-telephone-fill text-primary"></i>
+                            </span>
+
+                            <input type="text" [(ngModel)]="loginObj.contactNo" name="contactNo" class="form-control"
+                                placeholder="Enter your contact number">
+
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <div class="form-check">
+
+                            <!-- <input class="form-check-input" type="checkbox">
+
+                            <label class="form-check-label">
+                                Remember Me
+                            </label> -->
+
+                        </div>
+
+                        <a href="#" class="text-decoration-none">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+                    <div class="d-grid">
+
+                        <button type="button" class="btn btn-primary btn-lg rounded-pill shadow" (click)="onLogin()">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Login
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <hr class="my-4">
+
+                <div class="text-center text-muted">
+
+                    <i class="bi bi-shield-lock-fill text-success me-2"></i>
+
+                    Your credentials are protected with secure authentication.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

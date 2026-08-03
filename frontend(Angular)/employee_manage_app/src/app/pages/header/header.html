@@ -1,0 +1,66 @@
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <div class="sidebar shadow-lg" [class.collapsed]="isCollapsed">
+
+        <!-- Logo -->
+        <div class="logo-area">
+            <button class="toggle-btn" (click)="toggleSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <h4 *ngIf="!isCollapsed" class="logo-text">
+                AdminPro
+            </h4>
+        </div>
+
+        <!-- Navigation -->
+        <ul class="nav flex-column mt-4">
+
+            <li class="nav-item">
+                <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+                    <i class="bi bi-speedometer2"></i>
+                    <span *ngIf="!isCollapsed">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a routerLink="/new-employee" routerLinkActive="active" class="nav-link">
+                    <i class="bi bi-people"></i>
+                    <span *ngIf="!isCollapsed">New Employee</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a routerLink="/employees" routerLinkActive="active" class="nav-link">
+                    <i class="bi bi-people"></i>
+                    <span *ngIf="!isCollapsed">Employees</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a routerLink="/department" routerLinkActive="active" class="nav-link">
+                    <i class="bi bi-building"></i>
+                    <span *ngIf="!isCollapsed">Departments</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a routerLink="/designation" routerLinkActive="active" class="nav-link">
+                    <i class="bi bi-person-badge"></i>
+                    <span *ngIf="!isCollapsed">Designation</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- Content -->
+    <div class="content" [class.expand]="isCollapsed">
+
+        <router-outlet></router-outlet>
+
+    </div>
+
+</div>
