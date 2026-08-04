@@ -14,13 +14,14 @@ export class Login {
     email: '', contactNo: ''
   }
 
-  http = inject(HttpClient);
-  router = inject(Router);
+  http = inject(HttpClient);  // injecting HttpClient to make HTTP requests for api calls
+  router = inject(Router);  // injecting Router to navigate to different pages after successful login
 
   onLogin() {
     this.http.post('https://localhost:7038/api/EmployeeMaster/login', this.loginObj).subscribe({
       next: (result: any) => {
-        console.log("Result -> ", result);
+        //console.log("Result -> ", result);
+        localStorage.setItem('empLoginUser', JSON.stringify(result.data));  // storing the token in local storage for future use
         this.router.navigateByUrl("/dashboard");
       },
       error: (error: any) => {
