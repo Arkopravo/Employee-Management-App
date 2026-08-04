@@ -14,4 +14,11 @@ export class Header {
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
   }
+
+  logout() {
+    // Clear the user data from local storage
+    localStorage.removeItem('empLoginUser');
+    // Navigate to the login page
+    window.location.href = '/login';
+  }
 }
