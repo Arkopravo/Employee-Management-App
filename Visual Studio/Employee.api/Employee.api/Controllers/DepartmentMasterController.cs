@@ -40,11 +40,17 @@ namespace Employee.api.Controllers
             bool existingDepartment = await _context.Departments.AnyAsync(d => d.departmentName.ToLower() == department.departmentName.ToLower());
             if (existingDepartment)
             {
-                return BadRequest("Department with the same name already exists.");
+                return BadRequest(new
+                {
+                    message = "Department with the same name already exists."
+                });
             }
             _context.Departments.Add(department);
             await _context.SaveChangesAsync();
-            return Ok("Department added successfully.");
+            return Ok(new
+            {
+                message = "Department added successfully."
+            });
         }
 
         [HttpPut("UpdateDepartment/{id}")]      // API -> PUT: api/DepartmentMaster/UpdateDepartment/{id}
