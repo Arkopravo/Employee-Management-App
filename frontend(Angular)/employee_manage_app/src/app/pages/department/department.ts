@@ -48,6 +48,20 @@ export class Department implements OnInit {
     });
   }
 
+  onUpdateDept() {
+    this.masterService.updateDept(this.newDeptObj).subscribe({
+      next: (result: any) => {
+        alert('Department Updated Successfully');
+        this.newDeptObj = new DepartmentModel();
+        this.getAllDepartments();
+      },
+      error: (err: any) => {
+        console.log(err);
+        alert(err.error.message);
+      },
+    });
+  }
+
   onReset() {
     // resetting the form values
     this.newDeptObj = new DepartmentModel();

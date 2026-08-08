@@ -14,4 +14,8 @@ export class Master {
     saveDept(obj: DepartmentModel) {
         return this.http.post(this.apiUrl + 'DepartmentMaster/AddDepartment', obj);
     }
+
+    updateDept(obj: DepartmentModel) {
+        return this.http.put(this.apiUrl + 'DepartmentMaster/UpdateDepartment', obj);
+    }
 }

@@ -53,7 +53,7 @@ namespace Employee.api.Controllers
             });
         }
 
-        [HttpPut("UpdateDepartment/{id}")]      // API -> PUT: api/DepartmentMaster/UpdateDepartment/{id}
+        [HttpPut("UpdateDepartment")]      // API -> PUT: api/DepartmentMaster/UpdateDepartment/{id}
         public async Task<IActionResult> UpdateDepartment([FromBody] Department department)
         {
             if (department == null)
@@ -68,7 +68,7 @@ namespace Employee.api.Controllers
             existingDepartment.departmentName = department.departmentName;
             existingDepartment.isActive = department.isActive;
             await _context.SaveChangesAsync();
-            return Ok("Department updated successfully.");
+            return Ok(new { message = "Department updated successfully." });
         }
 
         [HttpDelete("DeleteDepartment/{id}")]      // API -> DELETE: api/DepartmentMaster/DeleteDepartment/{id}
