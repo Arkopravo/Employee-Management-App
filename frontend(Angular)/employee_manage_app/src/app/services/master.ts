@@ -18,4 +18,8 @@ export class Master {
     updateDept(obj: DepartmentModel) {
         return this.http.put(this.apiUrl + 'DepartmentMaster/UpdateDepartment', obj);
     }
+
+    deleteDept(deptId: number) {
+        return this.http.delete(this.apiUrl + 'DepartmentMaster/DeleteDepartment/' + deptId);
+    }
 }

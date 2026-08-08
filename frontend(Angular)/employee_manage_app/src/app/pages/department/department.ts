@@ -68,10 +68,23 @@ export class Department implements OnInit {
   }
 
   onEdit(data: DepartmentModel) {
-    this.newDeptObj = data;
+    const strData = JSON.stringify(data);
+    const parseObj = JSON.parse(strData);
+    this.newDeptObj = parseObj;
   }
 
-  onDelete(data: DepartmentModel) {
-
+  onDelete(id: number) {
+    if (confirm('Are you sure you want to delete this department?')) {
+      this.masterService.deleteDept(id).subscribe({
+        next: (result: any) => {
+          alert('Department Deleted Successfully');
+          this.getAllDepartments();
+        },
+        error: (err: any) => {
+          console.log(err);
+          alert(err.error.message);
+        },
+      });
+    }
   }
 }

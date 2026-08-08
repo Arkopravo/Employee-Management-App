@@ -81,7 +81,10 @@ namespace Employee.api.Controllers
             }
             _context.Departments.Remove(department);
             await _context.SaveChangesAsync();
-            return Ok("Department deleted successfully.");
+            return Ok(new
+            {
+                message = "Department deleted successfully."
+            });
         }
     }
 }
