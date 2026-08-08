@@ -12,3 +12,10 @@ export class DepartmentModel {
         this.isActive = false;
     }
 }
+
+
+export interface DesignationModel {
+    designationId: number;
+    departmentId: number;
+    designationName: string;
+}

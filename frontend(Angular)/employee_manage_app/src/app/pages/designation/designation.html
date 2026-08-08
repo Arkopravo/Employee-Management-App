@@ -1,1 +1,162 @@
-<p>designation works!</p>
+<div class="designation-page">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="container-fluid py-4 position-relative">
+    <!-- HERO SECTION -->
+    <div class="hero-card mb-4">
+      <div>
+        <h1 class="page-title">Designation Management</h1>
+
+        <p class="page-subtitle">Create, manage and organize company designations effortlessly</p>
+      </div>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="modern-card mb-4">
+      <div class="section-title">
+        <h4>Designation Details</h4>
+
+        <p>Fill in the information below</p>
+      </div>
+
+      <form [formGroup]="designationForm" class="row g-4 mt-2">
+        <!-- DEPARTMENT -->
+        <div class="col-lg-4 col-md-6">
+          <label class="modern-label"> Department </label>
+
+          <div class="select-wrapper">
+            <i class="bi bi-building"></i>
+
+            <select formControlName="departmentId" class="modern-select">
+              <option value="0">Select Department</option>
+
+              @for (dept of departmentList; track $index) {
+                <option [value]="dept.departmentId">
+                  {{ dept.departmentName }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <!-- DESIGNATION -->
+        <div class="col-lg-4 col-md-6">
+          <label class="modern-label"> Designation Name </label>
+
+          <div class="input-wrapper">
+            <i class="bi bi-person-badge"></i>
+
+            <input
+              type="text"
+              formControlName="designationName"
+              class="modern-input"
+              placeholder="Enter designation name"
+            />
+          </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="col-lg-4 d-flex align-items-end">
+          <div class="d-flex gap-3 w-100">
+            <button
+              class="btn modern-btn-primary w-100"
+              (click)="onSave()"
+              [disabled]="isLoading()"
+            >
+              <i
+                class="bi"
+                [class.bi-check-circle]="!isEditMode"
+                [class.bi-pencil-square]="isEditMode"
+              ></i>
+
+              <span class="ms-2">
+                {{ isEditMode ? 'Update' : 'Save' }}
+              </span>
+            </button>
+
+            <button type="button" class="btn modern-btn-secondary" (click)="resetForm()">
+              <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="modern-card">
+      <div class="table-top">
+        <div>
+          <h4>Designation List</h4>
+
+          <p>Manage all available designations</p>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="search-box">
+          <i class="bi bi-search"></i>
+
+          <input type="text" placeholder="Search designation..." />
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="table-responsive custom-table-wrapper mt-4">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Department</th>
+              <th>Designation</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (item of $designationList | async; track $index) {
+              <tr>
+                <!-- INDEX -->
+                <td>
+                  <div class="index-badge">
+                    {{ $index + 1 }}
+                  </div>
+                </td>
+
+                <!-- DEPARTMENT -->
+                <!-- <td>
+                  <span class="department-pill">
+                    {{ item.departmentName }}
+                  </span>
+                </td> -->
+
+                <!-- DESIGNATION -->
+                <td>
+                  <div class="designation-name">
+                    {{ item.designationName }}
+                  </div>
+                </td>
+
+                <!-- ACTIONS -->
+                <td class="text-center">
+                  <!-- EDIT -->
+                  <button class="action-btn edit-btn" (click)="onEdit(item)">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+
+                  <!-- DELETE -->
+                  <button class="action-btn delete-btn" (click)="onDelete(item.designationId)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
