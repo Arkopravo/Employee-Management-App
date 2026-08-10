@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { DepartmentModel, DesignationModel } from '../models/Department.model';
+import { DepartmentModel, DesignationListModel, DesignationModel } from '../models/Department.model';
 import { Observable } from 'rxjs';
 
 @Service()
@@ -25,9 +25,16 @@ export class Master {
     return this.http.delete(this.apiUrl + 'DepartmentMaster/DeleteDepartment/' + deptId);
   }
 
+
+
+
+
+
+
+
   // Designation
-  getAllDesignations(): Observable<DesignationModel[]> {
-    return this.http.get<DesignationModel[]>(this.apiUrl + 'DesignationMaster/GetAllDesignations');
+  getAllDesignations(): Observable<DesignationListModel[]> {
+    return this.http.get<DesignationListModel[]>(this.apiUrl + 'DesignationMaster/GetAllDesignations');
   }
 
   getDesignationById(id: number) {
@@ -38,8 +45,8 @@ export class Master {
     return this.http.post(this.apiUrl + 'DesignationMaster/AddDesignation', data);
   }
 
-  updateDesignation(id: number) {
-    return this.http.put(this.apiUrl + 'DesignationMaster/UpdateDesignation/', id);
+  updateDesignation(data: DesignationModel) {
+    return this.http.put(this.apiUrl + 'DesignationMaster/UpdateDesignation/'+ data.designationId, data);
   }
 
   deleteDesignation(id: number) {

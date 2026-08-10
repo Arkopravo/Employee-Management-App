@@ -20,7 +20,15 @@ namespace Employee.api.Controllers
         {
             try
             {
-                var data = await _context.Designations.ToListAsync();
+                var data = await (from d in _context.Designations join dept in _context.Departments 
+                                  on d.departmentId equals dept.departmentId 
+                                  select new
+                                  {
+                                      d.designationId,
+                                      d.designationName,
+                                      d.departmentId,
+                                      departmentName = dept.departmentName,
+                                  }).ToListAsync();
                 return Ok(data);
             }
             catch (Exception ex)
@@ -112,7 +120,7 @@ namespace Employee.api.Controllers
                 _context.Designations.Remove(designation);
                 await _context.SaveChangesAsync();
 
-                return Ok("Designation deleted successfully.");
+                return Ok(new{message = "Designation deleted successfully."});
             }
             catch (Exception ex)
             {

@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DepartmentModel, DesignationModel } from '../../models/Department.model';
+import { DepartmentModel, DesignationListModel, DesignationModel } from '../../models/Department.model';
 import { Master } from '../../services/master';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -21,24 +21,26 @@ import { AsyncPipe } from '@angular/common';
 export class Designation implements OnInit {
   fb = inject(FormBuilder);
   masterService = inject(Master);
-  $designationList: Observable<DesignationModel[]> = new Observable<DesignationModel[]>();
+
+  $designationList: Observable<DesignationListModel[]> = new Observable<DesignationListModel[]>();
   departmentList: DepartmentModel[] = [];
+
   isEditMode: boolean = false;
 
   designationForm!: FormGroup;
 
   isLoading = signal(false);
 
-  loadDepartments() {
-    this.masterService.getAllDept().subscribe((res: any) => {
-      this.departmentList = res;
-    });
-  }
-
   ngOnInit(): void {
     this.createForm();
     this.loadDepartments();
     this.loadDesignations();
+  }
+
+  loadDepartments() {
+    this.masterService.getAllDept().subscribe((res: any) => {
+      this.departmentList = res;
+    });
   }
 
   createForm() {
@@ -81,7 +83,7 @@ export class Designation implements OnInit {
       });
     } else {
       this.masterService.addDesignation(formvalue).subscribe(() => {
-        alert('Designations updated Successfully');
+        alert('Designations saved Successfully');
         this.loadDesignations();
         this.resetForm();
         this.isLoading.set(false);
@@ -111,7 +113,7 @@ export class Designation implements OnInit {
   }
 
   // newDesignationObj: DesignationModel;
-  // constructor() {                 // have to write this constructor if we interface only instead of class
+  // constructor() {                 // have to write this constructor if we use interface only instead of class
   //   this.newDesignationObj = {
   //     departmentId: 0,
   //     designationName: '',
