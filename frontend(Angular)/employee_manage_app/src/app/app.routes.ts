@@ -14,7 +14,7 @@ export const routes: Routes = [
         path: '', component: Header,
         children: [
             { path: 'dashboard', component: Dashboard },
-            { path: 'new-employee', component: EmployeeForm },
+            { path: 'new-employee/:id', component: EmployeeForm },
             { path: 'department', component: Department },
             { path: 'designation', component: Designation },
             { path: 'employees', component: EmployeeList },

@@ -1,0 +1,63 @@
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-title {
+  font-weight: 600;
+  color: #212529;
+}
+
+.page-subtitle {
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+.modern-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.section-title h5 {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.section-title p {
+  margin-bottom: 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.required {
+  color: #dc3545;
+}
+
+.form-control,
+.form-select {
+  min-height: 44px;
+  border-radius: 8px;
+}
+
+textarea.form-control {
+  min-height: 100px;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 9px 20px;
+}

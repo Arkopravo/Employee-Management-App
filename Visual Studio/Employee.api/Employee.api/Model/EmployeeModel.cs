@@ -16,6 +16,8 @@ namespace Employee.api.Model
         [EmailAddress]
         public string email { get; set; } = string.Empty;
         [Required, MaxLength(50)]
+        public string city { get; set; } = string.Empty;
+        [Required, MaxLength(50)]
         public string state { get; set; } = string.Empty;
         [Required, MaxLength(6)]
         public string pincode { get; set; } = string.Empty;

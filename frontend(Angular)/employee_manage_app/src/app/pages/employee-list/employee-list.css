@@ -1,0 +1,414 @@
+/* ================================
+   PAGE
+================================ */
+
+:host {
+  display: block;
+}
+
+.page-title {
+  font-weight: 600;
+  color: #212529;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* ================================
+   SUMMARY CARD
+================================ */
+
+.summary-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.summary-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.summary-label {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.summary-card h3 {
+  margin: 0;
+  font-weight: 600;
+  color: #212529;
+}
+
+.summary-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: #e7f1ff;
+  color: #0d6efd;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+/* ================================
+   MAIN CARD
+================================ */
+
+.modern-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ================================
+   SECTION HEADER
+================================ */
+
+.section-header {
+  padding: 20px;
+  border-bottom: 1px solid #e9ecef;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.section-header h5 {
+  font-weight: 600;
+  color: #212529;
+}
+
+/* ================================
+   SEARCH
+================================ */
+
+.search-box {
+  position: relative;
+  width: 280px;
+}
+
+.search-box i {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #6c757d;
+  z-index: 2;
+}
+
+.search-box input {
+  padding-left: 38px;
+  height: 42px;
+
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+
+.search-box input:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.1);
+}
+
+/* ================================
+   ADD EMPLOYEE BUTTON
+================================ */
+
+.btn-primary {
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-weight: 500;
+}
+
+/* ================================
+   TABLE
+================================ */
+
+.employee-table {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.employee-table thead {
+  background-color: #f8f9fa;
+}
+
+.employee-table thead th {
+  padding: 14px 15px;
+
+  color: #6c757d;
+  font-size: 13px;
+  font-weight: 600;
+
+  border-bottom: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.employee-table tbody td {
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.employee-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.employee-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.employee-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ================================
+   EMPLOYEE ID
+================================ */
+
+.employee-id {
+  color: #6c757d;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ================================
+   EMPLOYEE INFO
+================================ */
+
+.employee-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 220px;
+}
+
+/* Avatar */
+
+.avatar {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background-color: #e7f1ff;
+  color: #0d6efd;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Employee name */
+
+.employee-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #212529;
+
+  margin-bottom: 2px;
+}
+
+/* Employee email */
+
+.employee-email {
+  font-size: 12px;
+  color: #6c757d;
+
+  max-width: 200px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================================
+   CONTACT
+================================ */
+
+.employee-table td {
+  font-size: 14px;
+  color: #343a40;
+}
+
+/* ================================
+   LOCATION
+================================ */
+
+.fw-semibold {
+  font-weight: 500 !important;
+}
+
+/* ================================
+   DEPARTMENT BADGE
+================================ */
+
+.department-badge {
+  display: inline-block;
+
+  padding: 5px 11px;
+
+  border-radius: 20px;
+
+  background-color: #f1f3f5;
+  color: #495057;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+/* ================================
+   DESIGNATION
+================================ */
+
+.designation-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #343a40;
+
+  white-space: nowrap;
+}
+
+/* ================================
+   ROLE BADGE
+================================ */
+
+.role-badge {
+  display: inline-block;
+
+  padding: 5px 11px;
+
+  border-radius: 20px;
+
+  background-color: #e7f1ff;
+  color: #0d6efd;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+/* ================================
+   ACTION BUTTONS
+================================ */
+
+.employee-table .btn {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+}
+
+.employee-table .btn i {
+  font-size: 14px;
+}
+
+.employee-table .btn-outline-primary:hover {
+  color: #ffffff;
+}
+
+.employee-table .btn-outline-danger:hover {
+  color: #ffffff;
+}
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.empty-state {
+  text-align: center;
+
+  padding: 60px 20px;
+
+  color: #6c757d;
+}
+
+.empty-state i {
+  display: block;
+
+  font-size: 45px;
+
+  margin-bottom: 15px;
+
+  opacity: 0.5;
+}
+
+.empty-state h5 {
+  color: #343a40;
+  font-weight: 600;
+
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 992px) {
+  .section-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-card {
+    padding: 16px;
+  }
+
+  .employee-table {
+    min-width: 1000px;
+  }
+
+  .employee-info {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-title {
+    font-size: 22px;
+  }
+
+  .summary-icon {
+    width: 42px;
+    height: 42px;
+  }
+}

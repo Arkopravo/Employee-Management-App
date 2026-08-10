@@ -22,7 +22,33 @@ namespace Employee.api.Controllers
         {
             try
             {
-                var employees = await _context.Employees.ToListAsync();
+                var employees = await (
+                    from emp in _context.Employees
+                    join des in _context.Designations
+                        on emp.designationId equals des.designationId
+                    join dept in _context.Departments
+                        on des.departmentId equals dept.departmentId
+                    select new
+                    {
+                        emp.employeeId,
+                        emp.name,
+                        emp.contactNo,
+                        emp.email,
+                        emp.city,
+                        emp.state,
+                        emp.pincode,
+                        emp.altContactNo,
+                        emp.address,
+                        emp.designationId,
+                        emp.createdDate,
+                        emp.modifiedDate,
+                        emp.role,
+
+                        designationName = des.designationName,
+                        departmentName = dept.departmentName
+                    }
+                ).ToListAsync();
+
                 return Ok(employees);
             }
             catch (Exception ex)
@@ -81,7 +107,12 @@ namespace Employee.api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    innerException = ex.InnerException?.Message,
+                    innerInnerException = ex.InnerException?.InnerException?.Message
+                });
             }
         }
 

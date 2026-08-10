@@ -1,1 +1,167 @@
-<p>employee-list works!</p>
+<div class="container-fluid py-4">
+  <!-- ================= PAGE HEADER ================= -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="page-title mb-1">Employees</h2>
+      <p class="text-muted mb-0">Manage and view all employees</p>
+    </div>
+
+    <button class="btn btn-primary" routerLink="/new-employee/0">
+      <i class="bi bi-person-plus me-2"></i>
+      Add Employee
+    </button>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="summary-card">
+        <div>
+          <p class="summary-label">Total Employees</p>
+          <h3>{{ employeeList().length }}</h3>
+        </div>
+
+        <div class="summary-icon">
+          <i class="bi bi-people"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= EMPLOYEE TABLE ================= -->
+  <div class="modern-card">
+    <!-- Table Header -->
+    <div class="section-header">
+      <div>
+        <h5 class="mb-1">Employee List</h5>
+        <p class="text-muted mb-0">Complete employee information</p>
+      </div>
+
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+
+        <input type="text" class="form-control" placeholder="Search employee..." />
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table align-middle employee-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Employee</th>
+            <th>Contact</th>
+            <th>Location</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Role</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (employee of employeeList(); track $index) {
+            <tr>
+                <!-- ID -->
+              <td>
+                <span class="employee-id">
+                  {{ $index+1 }}
+                </span>
+              </td>
+              <!-- Employee -->
+              <td>
+                <div class="employee-info">
+                  <div class="avatar">
+                    {{ employee.name.charAt(0).toUpperCase() }}
+                  </div>
+
+                  <div>
+                    <div class="employee-name">
+                      {{ employee.name }}
+                    </div>
+
+                    <div class="employee-email">
+                      {{ employee.email }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Contact -->
+              <td>
+                <div>{{ employee.contactNo }}</div>
+
+                @if (employee.altContactNo) {
+                  <small class="text-muted"> Alt: {{ employee.altContactNo }} </small>
+                }
+              </td>
+
+              <!-- Location -->
+              <td>
+                <div class="fw-semibold">
+                  {{ employee.city }}
+                </div>
+
+                <small class="text-muted"> {{ employee.state }} - {{ employee.pincode }} </small>
+              </td>
+
+              <!-- Department -->
+              <td>
+                <span class="department-badge">
+                  {{ employee.departmentName }}
+                </span>
+              </td>
+
+              <!-- Designation -->
+              <td>
+                <div class="designation-name">
+                  {{ employee.designationName }}
+                </div>
+              </td>
+
+              <!-- Role -->
+              <td>
+                @if (employee.role) {
+                  <span class="role-badge">
+                    {{ employee.role }}
+                  </span>
+                } @else {
+                  <span class="text-muted"> — </span>
+                }
+              </td>
+
+              <!-- Actions -->
+              <td>
+                <div class="d-flex justify-content-center gap-2">
+                  <button [routerLink]="'/new-employee/'+employee.employeeId" type="button" class="btn btn-sm btn-outline-primary" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-sm btn-outline-danger" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+
+          <!-- Empty State -->
+          @if (employeeList().length === 0) {
+            <tr>
+              <td colspan="8">
+                <div class="empty-state">
+                  <i class="bi bi-people"></i>
+
+                  <h5>No Employees Found</h5>
+
+                  <p>There are currently no employees to display.</p>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
