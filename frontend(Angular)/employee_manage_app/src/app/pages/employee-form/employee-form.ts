@@ -25,7 +25,14 @@ export class EmployeeForm {
 
   router = inject(Router);
 
+  loggedEmpData: EmployeeModel = new EmployeeModel();
+
   constructor() {
+    const localData = localStorage.getItem('empLoginUser');
+    if (localData != null) {
+      this.loggedEmpData = JSON.parse(localData);
+    }
+
     this.activeRoute.params.subscribe((res: any) => {
       if (res.id != 0) {
         this.newEmployeeObj.employeeId = res.id;
@@ -53,7 +60,8 @@ export class EmployeeForm {
         this.onReset();
       },
       error: (error) => {
-        console.log(error);
+        console.log('Full error:', error);
+        console.log('Validation errors:', error.error?.errors);
       },
     });
   }

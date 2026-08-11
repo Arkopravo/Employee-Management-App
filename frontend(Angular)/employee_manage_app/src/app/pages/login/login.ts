@@ -22,7 +22,12 @@ export class Login {
       next: (result: any) => {
         //console.log("Result -> ", result);
         localStorage.setItem('empLoginUser', JSON.stringify(result.data));  // storing the token in local storage for future use
-        this.router.navigateByUrl("/dashboard");
+        console.log("Result.data = ", result.data);
+        if(result.data.role == "Employee") {
+          this.router.navigateByUrl("/new-employee/"+result.data.employeeId);
+        } else {
+          this.router.navigateByUrl("/dashboard");
+        }
       },
       error: (error: any) => {
         console.log("Error -> ", error);
