@@ -152,6 +152,7 @@ namespace Employee.api.Controllers
                 existing.altContactNo = employee.altContactNo;
                 existing.email = employee.email;
                 existing.state = employee.state;
+                existing.city = employee.city;
                 existing.pincode = employee.pincode;
                 existing.address = employee.address;
                 existing.designationId = employee.designationId;
@@ -181,7 +182,7 @@ namespace Employee.api.Controllers
                 _context.Employees.Remove(employee);
                 await _context.SaveChangesAsync();
 
-                return Ok("Employee deleted successfully.");
+                return Ok(new { message= "Employee deleted successfully." });
             }
             catch (Exception ex)
             {

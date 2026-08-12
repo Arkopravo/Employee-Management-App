@@ -57,7 +57,8 @@ export class EmployeeForm {
     this.employeeService.saveEmployee(this.newEmployeeObj).subscribe({
       next: (result) => {
         alert('Emoloyee created successfully');
-        this.onReset();
+        // this.onReset();
+        this.router.navigate(["/employees"]);
       },
       error: (error) => {
         console.log('Full error:', error);

@@ -99,55 +99,6 @@
 
       </div>
 
-
-      <!-- ACTIVE EMPLOYEES -->
-
-      <div class="col-xl-3 col-md-6">
-
-        <div class="stat-card">
-
-          <div class="stat-top">
-
-            <div class="stat-icon green">
-              <i class="bi bi-person-check-fill"></i>
-            </div>
-
-            <span class="stat-menu">
-              <i class="bi bi-three-dots"></i>
-            </span>
-
-          </div>
-
-          <div class="stat-content">
-
-            <span class="stat-label">
-              Active Employees
-            </span>
-
-            <h2>
-              {{ activeEmployees() }}
-            </h2>
-
-            <div class="stat-bottom">
-
-              <span class="trend positive">
-                <i class="bi bi-check-circle-fill"></i>
-                Active
-              </span>
-
-              <span class="stat-period">
-                Current
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
       <!-- DEPARTMENTS -->
 
       <div class="col-xl-3 col-md-6">
@@ -280,7 +231,7 @@
             </div>
 
             <a
-              routerLink="/employee"
+              routerLink="/employees"
               class="view-link"
             >
               View all
@@ -310,10 +261,6 @@
 
                   <th>
                     Designation
-                  </th>
-
-                  <th>
-                    Status
                   </th>
 
                 </tr>
@@ -383,35 +330,6 @@
                         {{ employee.designationName || '—' }}
 
                       </span>
-
-                    </td>
-
-
-                    <!-- STATUS -->
-
-                    <td>
-
-                      @if (employee.isActive) {
-
-                        <span class="status-pill active">
-
-                          <span class="status-dot"></span>
-
-                          Active
-
-                        </span>
-
-                      } @else {
-
-                        <span class="status-pill inactive">
-
-                          <span class="status-dot"></span>
-
-                          Inactive
-
-                        </span>
-
-                      }
 
                     </td>
 
