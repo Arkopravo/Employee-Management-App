@@ -1,1 +1,899 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+
+  <!-- ========================================= -->
+  <!-- TOP HEADER -->
+  <!-- ========================================= -->
+
+  <div class="container-fluid px-4 px-lg-5 py-4">
+
+    <div class="dashboard-header">
+
+      <div>
+        <div class="eyebrow">
+          <span class="online-dot"></span>
+          Employee Management System
+        </div>
+
+        <h1 class="dashboard-title">
+          Dashboard
+        </h1>
+
+        <p class="dashboard-subtitle">
+          Here's an overview of your organization today.
+        </p>
+      </div>
+
+      <div class="header-actions">
+
+        <button
+          class="modern-btn secondary-btn"
+          (click)="refreshDashboard()"
+        >
+          <i class="bi bi-arrow-clockwise"></i>
+          <span>Refresh</span>
+        </button>
+
+        <a
+          routerLink="/new-employee/0"
+          class="modern-btn primary-btn"
+        >
+          <i class="bi bi-plus-lg"></i>
+          <span>Add Employee</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- STAT CARDS -->
+    <!-- ========================================= -->
+
+    <div class="row g-4 mt-2">
+
+      <!-- TOTAL EMPLOYEES -->
+
+      <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+
+            <div class="stat-icon purple">
+              <i class="bi bi-people-fill"></i>
+            </div>
+
+            <span class="stat-menu">
+              <i class="bi bi-three-dots"></i>
+            </span>
+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-label">
+              Total Employees
+            </span>
+
+            <h2>
+              {{ totalEmployees() }}
+            </h2>
+
+            <div class="stat-bottom">
+
+              <span class="trend positive">
+                <i class="bi bi-arrow-up"></i>
+                Workforce
+              </span>
+
+              <span class="stat-period">
+                Overall
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACTIVE EMPLOYEES -->
+
+      <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+
+            <div class="stat-icon green">
+              <i class="bi bi-person-check-fill"></i>
+            </div>
+
+            <span class="stat-menu">
+              <i class="bi bi-three-dots"></i>
+            </span>
+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-label">
+              Active Employees
+            </span>
+
+            <h2>
+              {{ activeEmployees() }}
+            </h2>
+
+            <div class="stat-bottom">
+
+              <span class="trend positive">
+                <i class="bi bi-check-circle-fill"></i>
+                Active
+              </span>
+
+              <span class="stat-period">
+                Current
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DEPARTMENTS -->
+
+      <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+
+            <div class="stat-icon blue">
+              <i class="bi bi-building-fill"></i>
+            </div>
+
+            <span class="stat-menu">
+              <i class="bi bi-three-dots"></i>
+            </span>
+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-label">
+              Departments
+            </span>
+
+            <h2>
+              {{ totalDepartments() }}
+            </h2>
+
+            <div class="stat-bottom">
+
+              <span class="trend neutral">
+                <i class="bi bi-building"></i>
+                Organization
+              </span>
+
+              <span class="stat-period">
+                Total
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DESIGNATIONS -->
+
+      <div class="col-xl-3 col-md-6">
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+
+            <div class="stat-icon orange">
+              <i class="bi bi-person-badge-fill"></i>
+            </div>
+
+            <span class="stat-menu">
+              <i class="bi bi-three-dots"></i>
+            </span>
+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-label">
+              Designations
+            </span>
+
+            <h2>
+              {{ totalDesignations() }}
+            </h2>
+
+            <div class="stat-bottom">
+
+              <span class="trend neutral">
+                <i class="bi bi-briefcase-fill"></i>
+                Positions
+              </span>
+
+              <span class="stat-period">
+                Total
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================================= -->
+
+    <div class="row g-4 mt-1">
+
+
+      <!-- ======================================= -->
+      <!-- RECENT EMPLOYEES -->
+      <!-- ======================================= -->
+
+      <div class="col-xl-8">
+
+        <div class="modern-card employee-card">
+
+          <div class="card-heading">
+
+            <div>
+
+              <span class="section-kicker">
+                PEOPLE
+              </span>
+
+              <h3>
+                Recent Employees
+              </h3>
+
+              <p>
+                Latest employees added to your organization
+              </p>
+
+            </div>
+
+            <a
+              routerLink="/employee"
+              class="view-link"
+            >
+              View all
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+          </div>
+
+
+          <!-- TABLE -->
+
+          <div class="table-responsive">
+
+            <table class="modern-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>
+                    Employee
+                  </th>
+
+                  <th>
+                    Department
+                  </th>
+
+                  <th>
+                    Designation
+                  </th>
+
+                  <th>
+                    Status
+                  </th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+                @for (
+                  employee of getRecentEmployees();
+                  track employee.employeeId
+                ) {
+
+                  <tr>
+
+                    <!-- EMPLOYEE -->
+
+                    <td>
+
+                      <div class="employee-profile">
+
+                        <div class="employee-avatar">
+
+                          {{ getInitial(employee.name) }}
+
+                        </div>
+
+                        <div>
+
+                          <div class="employee-name">
+                            {{ employee.name }}
+                          </div>
+
+                          <div class="employee-email">
+                            {{ employee.email }}
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </td>
+
+
+                    <!-- DEPARTMENT -->
+
+                    <td>
+
+                      <span class="department-pill">
+
+                        <i class="bi bi-building"></i>
+
+                        {{ employee.departmentName || '—' }}
+
+                      </span>
+
+                    </td>
+
+
+                    <!-- DESIGNATION -->
+
+                    <td>
+
+                      <span class="designation-text">
+
+                        {{ employee.designationName || '—' }}
+
+                      </span>
+
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                      @if (employee.isActive) {
+
+                        <span class="status-pill active">
+
+                          <span class="status-dot"></span>
+
+                          Active
+
+                        </span>
+
+                      } @else {
+
+                        <span class="status-pill inactive">
+
+                          <span class="status-dot"></span>
+
+                          Inactive
+
+                        </span>
+
+                      }
+
+                    </td>
+
+                  </tr>
+
+                }
+
+
+                @if (getRecentEmployees().length === 0) {
+
+                  <tr>
+
+                    <td colspan="4">
+
+                      <div class="empty-state">
+
+                        <div class="empty-icon">
+                          <i class="bi bi-people"></i>
+                        </div>
+
+                        <h5>
+                          No employees yet
+                        </h5>
+
+                        <p>
+                          Add your first employee to get started.
+                        </p>
+
+                        <a
+                          routerLink="/new-employee/0"
+                          class="modern-btn primary-btn"
+                        >
+                          <i class="bi bi-plus-lg"></i>
+                          Add Employee
+                        </a>
+
+                      </div>
+
+                    </td>
+
+                  </tr>
+
+                }
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ======================================= -->
+      <!-- ORGANIZATION OVERVIEW -->
+      <!-- ======================================= -->
+
+      <div class="col-xl-4">
+
+        <div class="modern-card overview-card">
+
+          <div class="card-heading">
+
+            <div>
+
+              <span class="section-kicker">
+                OVERVIEW
+              </span>
+
+              <h3>
+                Organization
+              </h3>
+
+            </div>
+
+            <div class="overview-menu">
+              <i class="bi bi-three-dots"></i>
+            </div>
+
+          </div>
+
+
+          <!-- EMPLOYEES -->
+
+          <div class="overview-row">
+
+            <div class="overview-info">
+
+              <div class="mini-icon purple">
+                <i class="bi bi-people-fill"></i>
+              </div>
+
+              <div>
+
+                <strong>
+                  Employees
+                </strong>
+
+                <small>
+                  Total workforce
+                </small>
+
+              </div>
+
+            </div>
+
+            <span class="overview-number">
+              {{ totalEmployees() }}
+            </span>
+
+          </div>
+
+
+          <!-- ACTIVE -->
+
+          <div class="overview-row">
+
+            <div class="overview-info">
+
+              <div class="mini-icon green">
+                <i class="bi bi-person-check-fill"></i>
+              </div>
+
+              <div>
+
+                <strong>
+                  Active
+                </strong>
+
+                <small>
+                  Currently active
+                </small>
+
+              </div>
+
+            </div>
+
+            <span class="overview-number">
+              {{ activeEmployees() }}
+            </span>
+
+          </div>
+
+
+          <!-- DEPARTMENTS -->
+
+          <div class="overview-row">
+
+            <div class="overview-info">
+
+              <div class="mini-icon blue">
+                <i class="bi bi-building-fill"></i>
+              </div>
+
+              <div>
+
+                <strong>
+                  Departments
+                </strong>
+
+                <small>
+                  Organization units
+                </small>
+
+              </div>
+
+            </div>
+
+            <span class="overview-number">
+              {{ totalDepartments() }}
+            </span>
+
+          </div>
+
+
+          <!-- DESIGNATIONS -->
+
+          <div class="overview-row">
+
+            <div class="overview-info">
+
+              <div class="mini-icon orange">
+                <i class="bi bi-person-badge-fill"></i>
+              </div>
+
+              <div>
+
+                <strong>
+                  Designations
+                </strong>
+
+                <small>
+                  Available positions
+                </small>
+
+              </div>
+
+            </div>
+
+            <span class="overview-number">
+              {{ totalDesignations() }}
+            </span>
+
+          </div>
+
+
+          <!-- SUMMARY -->
+
+          <div class="overview-summary">
+
+            <div class="summary-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+
+            <div>
+
+              <strong>
+                System healthy
+              </strong>
+
+              <small>
+                All management modules are operational.
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- QUICK ACTIONS -->
+    <!-- ========================================= -->
+
+    <div class="modern-card mt-4">
+
+      <div class="card-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            SHORTCUTS
+          </span>
+
+          <h3>
+            Quick Actions
+          </h3>
+
+          <p>
+            Access frequently used modules
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="row g-3">
+
+
+        <!-- EMPLOYEE -->
+
+        <div class="col-lg-4">
+
+          <a
+            routerLink="/new-employee/0"
+            class="action-card"
+          >
+
+            <div class="action-icon purple">
+
+              <i class="bi bi-person-plus-fill"></i>
+
+            </div>
+
+            <div class="action-content">
+
+              <h5>
+                Add Employee
+              </h5>
+
+              <p>
+                Create a new employee profile
+              </p>
+
+            </div>
+
+            <div class="action-arrow">
+
+              <i class="bi bi-arrow-up-right"></i>
+
+            </div>
+
+          </a>
+
+        </div>
+
+
+        <!-- DEPARTMENT -->
+
+        <div class="col-lg-4">
+
+          <a
+            routerLink="/department"
+            class="action-card"
+          >
+
+            <div class="action-icon blue">
+
+              <i class="bi bi-building-add"></i>
+
+            </div>
+
+            <div class="action-content">
+
+              <h5>
+                Departments
+              </h5>
+
+              <p>
+                Manage organizational departments
+              </p>
+
+            </div>
+
+            <div class="action-arrow">
+
+              <i class="bi bi-arrow-up-right"></i>
+
+            </div>
+
+          </a>
+
+        </div>
+
+
+        <!-- DESIGNATION -->
+
+        <div class="col-lg-4">
+
+          <a
+            routerLink="/designation"
+            class="action-card"
+          >
+
+            <div class="action-icon orange">
+
+              <i class="bi bi-person-badge-fill"></i>
+
+            </div>
+
+            <div class="action-content">
+
+              <h5>
+                Designations
+              </h5>
+
+              <p>
+                Manage employee positions
+              </p>
+
+            </div>
+
+            <div class="action-arrow">
+
+              <i class="bi bi-arrow-up-right"></i>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- DEPARTMENTS -->
+    <!-- ========================================= -->
+
+    <div class="modern-card mt-4">
+
+      <div class="card-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            ORGANIZATION
+          </span>
+
+          <h3>
+            Departments
+          </h3>
+
+          <p>
+            Current departments in your organization
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="row g-3">
+
+        @for (
+          department of departmentList();
+          track department.departmentId
+        ) {
+
+          <div class="col-xl-3 col-lg-4 col-md-6">
+
+            <div class="department-item">
+
+              <div class="department-icon">
+
+                <i class="bi bi-building"></i>
+
+              </div>
+
+              <div class="department-details">
+
+                <h6>
+                  {{ department.departmentName }}
+                </h6>
+
+                @if (department.isActive) {
+
+                  <span class="department-status active">
+                    Active
+                  </span>
+
+                } @else {
+
+                  <span class="department-status inactive">
+                    Inactive
+                  </span>
+
+                }
+
+              </div>
+
+              <i
+                class="bi bi-chevron-right department-arrow"
+              ></i>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================= -->
+
+    <div class="dashboard-footer">
+
+      <span>
+        Employee Management System
+      </span>
+
+      <span>
+        © 2026
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
