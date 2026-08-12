@@ -1,162 +1,570 @@
 <div class="designation-page">
-  <!-- Animated Background -->
-  <div class="animated-bg">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
 
-  <div class="container-fluid py-4 position-relative">
-    <!-- HERO SECTION -->
-    <div class="hero-card mb-4">
+  <div class="container-fluid py-4">
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <div class="page-header mb-4">
+
       <div>
-        <h1 class="page-title">Designation Management</h1>
 
-        <p class="page-subtitle">Create, manage and organize company designations effortlessly</p>
+        <div class="breadcrumb-text">
+          <i class="bi bi-grid-1x2-fill"></i>
+          <span>Master</span>
+          <i class="bi bi-chevron-right"></i>
+          <span>Designation</span>
+        </div>
+
+        <div class="title-row">
+
+          <div class="title-icon">
+            <i class="bi bi-person-badge-fill"></i>
+          </div>
+
+          <div>
+            <h1 class="page-title">
+              Designation Management
+            </h1>
+
+            <p class="page-subtitle">
+              Create, update and organize company designations
+            </p>
+          </div>
+
+        </div>
+
       </div>
-    </div>
 
-    <!-- FORM CARD -->
-    <div class="modern-card mb-4">
-      <div class="section-title">
-        <h4>Designation Details</h4>
 
-        <p>Fill in the information below</p>
-      </div>
+      <!-- SUMMARY -->
 
-      <form [formGroup]="designationForm" class="row g-4 mt-2">
-        <!-- DEPARTMENT -->
-        <div class="col-lg-4 col-md-6">
-          <label class="modern-label"> Department </label>
+      <div class="header-summary">
 
-          <div class="select-wrapper">
-            <i class="bi bi-building"></i>
-
-            <select formControlName="departmentId" class="modern-select">
-              <option value="0">Select Department</option>
-
-              @for (dept of departmentList; track $index) {
-                <option [value]="dept.departmentId">
-                  {{ dept.departmentName }}
-                </option>
-              }
-            </select>
-          </div>
+        <div class="summary-icon">
+          <i class="bi bi-person-vcard-fill"></i>
         </div>
 
-        <!-- DESIGNATION -->
-        <div class="col-lg-4 col-md-6">
-          <label class="modern-label"> Designation Name </label>
-
-          <div class="input-wrapper">
-            <i class="bi bi-person-badge"></i>
-
-            <input
-              type="text"
-              formControlName="designationName"
-              class="modern-input"
-              placeholder="Enter designation name"
-            />
-          </div>
-        </div>
-
-        <!-- BUTTONS -->
-        <div class="col-lg-4 d-flex align-items-end">
-          <div class="d-flex gap-3 w-100">
-            <button
-              class="btn modern-btn-primary w-100"
-              (click)="onSave()"
-              [disabled]="isLoading()"
-            >
-              <i
-                class="bi"
-                [class.bi-check-circle]="!isEditMode"
-                [class.bi-pencil-square]="isEditMode"
-              ></i>
-
-              <span class="ms-2">
-                {{ isEditMode ? 'Update' : 'Save' }}
-              </span>
-            </button>
-
-            <button type="button" class="btn modern-btn-secondary" (click)="resetForm()">
-              <i class="bi bi-arrow-counterclockwise"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <!-- TABLE CARD -->
-    <div class="modern-card">
-      <div class="table-top">
         <div>
-          <h4>Designation List</h4>
+          <span>Total Designations</span>
 
-          <p>Manage all available designations</p>
+          <strong>
+            {{ ($designationList | async)?.length || 0 }}
+          </strong>
         </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FORM CARD
+    ====================================================== -->
+
+    <div class="modern-card mb-4">
+
+      <div class="card-heading">
+
+        <div class="heading-content">
+
+          <div class="section-icon">
+            <i class="bi bi-pencil-square"></i>
+          </div>
+
+          <div>
+
+            <span class="section-kicker">
+              FORM
+            </span>
+
+            <h3>
+              Designation Details
+            </h3>
+
+            <p>
+              Enter the designation information below
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-divider"></div>
+
+
+      <form
+        [formGroup]="designationForm"
+        (ngSubmit)="onSave()"
+      >
+
+        <div class="row g-4 align-items-end">
+
+          <!-- =================================================
+               DEPARTMENT
+          ================================================== -->
+
+          <div class="col-lg-5 col-md-6">
+
+            <label class="modern-label">
+              Department
+              <span>*</span>
+            </label>
+
+            <div class="input-wrapper">
+
+              <i class="bi bi-building input-icon"></i>
+
+              <select
+                formControlName="departmentId"
+                class="modern-input modern-select"
+              >
+
+                <option value="0">
+                  Select Department
+                </option>
+
+                @for (dept of departmentList; track $index) {
+
+                  <option [value]="dept.departmentId">
+                    {{ dept.departmentName }}
+                  </option>
+
+                }
+
+              </select>
+
+            </div>
+
+            <div class="input-help">
+              Select the department for this designation
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               DESIGNATION NAME
+          ================================================== -->
+
+          <div class="col-lg-4 col-md-6">
+
+            <label class="modern-label">
+              Designation Name
+              <span>*</span>
+            </label>
+
+            <div class="input-wrapper">
+
+              <i class="bi bi-person-badge input-icon"></i>
+
+              <input
+                type="text"
+                formControlName="designationName"
+                class="modern-input"
+                placeholder="Enter designation name"
+              />
+
+            </div>
+
+            <div class="input-help">
+              Example: Software Developer, Manager, HR Executive
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               BUTTONS
+          ================================================== -->
+
+          <div class="col-lg-3 col-md-12">
+
+            <label class="modern-label invisible">
+              Actions
+            </label>
+
+            <div class="form-actions">
+
+              <!-- SAVE / UPDATE -->
+
+              <button
+                type="submit"
+                class="modern-btn primary-btn"
+                [disabled]="isLoading()"
+              >
+
+                @if (isLoading()) {
+
+                  <span
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                  ></span>
+
+                  <span>
+                    Saving...
+                  </span>
+
+                } @else {
+
+                  <i
+                    class="bi"
+                    [class.bi-check-circle-fill]="!isEditMode"
+                    [class.bi-pencil-square]="isEditMode"
+                  ></i>
+
+                  <span>
+                    {{ isEditMode ? 'Update' : 'Save' }}
+                  </span>
+
+                }
+
+              </button>
+
+
+              <!-- RESET -->
+
+              <button
+                type="button"
+                class="modern-btn reset-btn"
+                (click)="resetForm()"
+                title="Reset form"
+              >
+
+                <i class="bi bi-arrow-counterclockwise"></i>
+
+                <span class="d-none d-md-inline">
+                  Reset
+                </span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABLE CARD
+    ====================================================== -->
+
+    <div class="modern-card">
+
+      <!-- TABLE HEADER -->
+
+      <div class="table-header">
+
+        <div class="heading-content">
+
+          <div class="section-icon blue-icon">
+            <i class="bi bi-list-ul"></i>
+          </div>
+
+          <div>
+
+            <span class="section-kicker">
+              RECORDS
+            </span>
+
+            <h3>
+              Designation List
+            </h3>
+
+            <p>
+              Manage all available company designations
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- COUNT -->
+
+        <div class="designation-count">
+
+          <i class="bi bi-person-badge"></i>
+
+          <span>
+            Total
+          </span>
+
+          <strong>
+            {{ ($designationList | async)?.length || 0 }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- TOOLBAR -->
+
+      <div class="table-toolbar">
+
+        <div class="table-info">
+
+          <i class="bi bi-info-circle-fill"></i>
+
+          <span>
+            Available designations
+          </span>
+
+        </div>
+
 
         <!-- SEARCH -->
+
         <div class="search-box">
+
           <i class="bi bi-search"></i>
 
-          <input type="text" placeholder="Search designation..." />
+          <input
+            type="text"
+            placeholder="Search designation..."
+          />
+
         </div>
+
       </div>
 
-      <!-- TABLE -->
-      <div class="table-responsive custom-table-wrapper mt-4">
+
+
+      <!-- =================================================
+           TABLE
+      ================================================== -->
+
+      <div class="table-responsive">
+
         <table class="modern-table">
+
           <thead>
+
             <tr>
-              <th>#</th>
-              <th>Department</th>
-              <th>Designation</th>
-              <th class="text-center">Actions</th>
+
+              <th>
+                #
+              </th>
+
+              <th>
+                Department
+              </th>
+
+              <th>
+                Designation
+              </th>
+
+              <th class="text-center">
+                Actions
+              </th>
+
             </tr>
+
           </thead>
 
+
           <tbody>
-            @for (item of $designationList | async; track $index) {
+
+            @for (
+              item of $designationList | async;
+              track item.designationId
+            ) {
+
               <tr>
+
                 <!-- INDEX -->
+
                 <td>
-                  <div class="index-badge">
+
+                  <div class="index-number">
                     {{ $index + 1 }}
                   </div>
+
                 </td>
+
 
                 <!-- DEPARTMENT -->
+
                 <td>
-                  <span class="department-pill">
-                    {{ item.departmentName }}
-                  </span>
+
+                  <div class="department-info">
+
+                    <div class="department-avatar">
+                      <i class="bi bi-building"></i>
+                    </div>
+
+                    <div>
+
+                      <div class="department-name">
+                        {{ item.departmentName }}
+                      </div>
+
+                      <div class="department-label">
+                        Department
+                      </div>
+
+                    </div>
+
+                  </div>
+
                 </td>
+
 
                 <!-- DESIGNATION -->
+
                 <td>
-                  <div class="designation-name">
-                    {{ item.designationName }}
+
+                  <div class="designation-info">
+
+                    <div class="designation-icon">
+                      <i class="bi bi-person-badge-fill"></i>
+                    </div>
+
+                    <div>
+
+                      <div class="designation-name">
+                        {{ item.designationName }}
+                      </div>
+
+                      <div class="designation-label">
+                        Company designation
+                      </div>
+
+                    </div>
+
                   </div>
+
                 </td>
+
 
                 <!-- ACTIONS -->
-                <td class="text-center">
-                  <!-- EDIT -->
-                  <button class="action-btn edit-btn" (click)="onEdit(item)">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
 
-                  <!-- DELETE -->
-                  <button class="action-btn delete-btn" (click)="onDelete(item.designationId)">
-                    <i class="bi bi-trash"></i>
-                  </button>
+                <td>
+
+                  <div class="action-wrapper">
+
+                    <!-- EDIT -->
+
+                    <button
+                      type="button"
+                      class="table-action edit"
+                      (click)="onEdit(item)"
+                      title="Edit designation"
+                    >
+
+                      <i class="bi bi-pencil-square"></i>
+
+                    </button>
+
+
+                    <!-- DELETE -->
+
+                    <button
+                      type="button"
+                      class="table-action delete"
+                      (click)="onDelete(item.designationId)"
+                      title="Delete designation"
+                    >
+
+                      <i class="bi bi-trash3-fill"></i>
+
+                    </button>
+
+                  </div>
+
                 </td>
+
               </tr>
+
             }
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            @if (($designationList | async)?.length === 0) {
+
+              <tr>
+
+                <td colspan="4">
+
+                  <div class="empty-state">
+
+                    <div class="empty-icon">
+
+                      <i class="bi bi-person-badge"></i>
+
+                    </div>
+
+                    <h4>
+                      No Designations Found
+                    </h4>
+
+                    <p>
+                      Start by creating your first company designation.
+                    </p>
+
+                    <button
+                      type="button"
+                      class="modern-btn primary-btn empty-button"
+                      (click)="resetForm()"
+                    >
+
+                      <i class="bi bi-plus-circle"></i>
+
+                      Add Designation
+
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            }
+
           </tbody>
+
         </table>
+
       </div>
+
     </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <div class="page-footer">
+
+      <span>
+        <i class="bi bi-shield-check me-1"></i>
+        Designation Master
+      </span>
+
+      <span>
+        Manage your organization efficiently
+      </span>
+
+    </div>
+
   </div>
+
 </div>
