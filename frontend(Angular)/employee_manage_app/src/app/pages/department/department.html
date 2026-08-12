@@ -1,114 +1,286 @@
-<div class="container-fluid py-4">
-  <!-- Heading -->
-  <div class="mb-4">
-    <h2 class="fw-bold mb-1">Department Master</h2>
-    <p class="text-muted mb-0">Create, Update and Manage Departments</p>
-  </div>
+<div class="department-page">
+  <div class="container-fluid px-4 px-lg-5 py-4">
+    <!-- ========================================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================================= -->
 
-  <!-- Form -->
-  <div class="card shadow-sm border-0 form-card">
-    <div class="card-header bg-white">
-      <h5 class="fw-bold mb-0">Department Details</h5>
-    </div>
-
-    <div class="card-body">
-      <div class="row g-3 align-items-end">
-        <!-- Department -->
-        <div class="col">
-          <label class="form-label fw-semibold"> Department Name </label>
-
-          <input
-            type="text"
-            [(ngModel)]="newDeptObj.departmentName"
-            class="form-control custom-input"
-            placeholder="Enter Department Name"
-          />
+    <div class="page-header">
+      <div>
+        <div class="eyebrow">
+          <span class="online-dot"></span>
+          Organization Management
         </div>
 
-        <!-- Active -->
-        <div class="col-auto">
-          <div class="form-check pt-4">
-            <input
-              type="checkbox"
-              [(ngModel)]="newDeptObj.isActive"
-              class="form-check-input"
-              id="active"
-            />
+        <h1 class="page-title">Department Master</h1>
 
-            <label class="form-check-label" for="active"> Is Active </label>
+        <p class="page-subtitle">Create, update and manage organizational departments.</p>
+      </div>
+
+      <div class="header-badge">
+        <i class="bi bi-building"></i>
+
+        <span> {{ deptList().length }} Departments </span>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- DEPARTMENT FORM -->
+    <!-- ========================================= -->
+
+    <div class="modern-card form-card">
+      <!-- Card Heading -->
+
+      <div class="card-heading">
+        <div>
+          <span class="section-kicker"> DEPARTMENT </span>
+
+          <h3>Department Details</h3>
+
+          <p>Enter the department information below.</p>
+        </div>
+
+        <div class="heading-icon">
+          <i class="bi bi-building-add"></i>
+        </div>
+      </div>
+
+      <!-- FORM -->
+
+      <div class="row g-4 align-items-end">
+        <!-- Department Name -->
+
+        <div class="col-lg-6 col-md-7">
+          <label class="modern-label"> Department Name </label>
+
+          <div class="input-wrapper">
+            <i class="bi bi-building"></i>
+
+            <input
+              type="text"
+              [(ngModel)]="newDeptObj.departmentName"
+              class="modern-input"
+              placeholder="Enter department name"
+            />
           </div>
         </div>
 
-        <!-- Save -->
-        <div class="col-auto">
-          @if (newDeptObj.departmentId == 0) {
-            <button (click)="onSaveDept()" class="btn btn-primary px-4 w-100">
-              <i class="bi bi-check-circle-fill me-2"></i> Save
-            </button>
-          } @else {
-            <button (click)="onUpdateDept()" class="btn btn-warning px-4 w-100">
-              <i class="bi bi-check-circle-fill me-2"></i> Update
-            </button>
-          }
+        <!-- ACTIVE -->
+
+        <div class="col-lg-2 col-md-5">
+          <div class="active-control">
+            <label class="modern-label"> Status </label>
+
+            <div class="custom-switch">
+              <input type="checkbox" [(ngModel)]="newDeptObj.isActive" id="active" />
+
+              <label for="active">
+                <span class="switch-slider"></span>
+
+                <span class="switch-text">
+                  {{ newDeptObj.isActive ? 'Active' : 'Inactive' }}
+                </span>
+              </label>
+            </div>
+          </div>
         </div>
 
-        <!-- Reset -->
-        <div class="col-auto">
-          <button (click)="onReset()" class="btn btn-outline-secondary px-4 w-100">
-            <i class="bi bi-arrow-clockwise me-2"></i>
+        <!-- BUTTONS -->
 
-            Reset
-          </button>
+        <div class="col-lg-4">
+          <div class="form-actions">
+            <!-- SAVE / UPDATE -->
+
+            @if (newDeptObj.departmentId == 0) {
+              <button type="button" class="modern-btn primary-btn" (click)="onSaveDept()">
+                <i class="bi bi-check-circle"></i>
+
+                <span> Save Department </span>
+              </button>
+            } @else {
+              <button type="button" class="modern-btn update-btn" (click)="onUpdateDept()">
+                <i class="bi bi-pencil-square"></i>
+
+                <span> Update Department </span>
+              </button>
+            }
+
+            <!-- RESET -->
+
+            <button
+              type="button"
+              class="modern-btn secondary-btn"
+              (click)="onReset()"
+              title="Reset"
+            >
+              <i class="bi bi-arrow-counterclockwise"></i>
+
+              <span> Reset </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Table -->
+    <!-- ========================================= -->
+    <!-- DEPARTMENT LIST -->
+    <!-- ========================================= -->
 
-  <div class="card shadow-sm border-0 mt-4">
-    <div class="card-header bg-white">
-      <h5 class="fw-bold mb-0">Department List</h5>
-    </div>
+    <div class="modern-card department-list-card mt-4">
+      <!-- TABLE HEADER -->
 
-    <div class="card-body">
+      <div class="card-heading table-heading">
+        <div>
+          <span class="section-kicker"> ORGANIZATION </span>
+
+          <h3>Department List</h3>
+
+          <p>Manage all departments available in your organization.</p>
+        </div>
+
+        <!-- COUNT -->
+
+        <div class="list-count">
+          <div class="count-icon">
+            <i class="bi bi-buildings"></i>
+          </div>
+
+          <div>
+            <span> Total </span>
+
+            <strong>
+              {{ deptList().length }}
+            </strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================= -->
+      <!-- TABLE -->
+      <!-- ========================================= -->
+
       <div class="table-responsive">
-        <table class="table table-hover align-middle">
+        <table class="modern-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Department Name</th>
+              <th class="index-column">#</th>
+
+              <th>Department</th>
+
               <th>Status</th>
-              <th class="text-center">Action</th>
+
+              <th class="text-center action-column">Actions</th>
             </tr>
           </thead>
 
           <tbody>
-            @for (item of deptList(); track $index) {
+            @for (item of deptList(); track item.departmentId) {
               <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ item.departmentName }}</td>
+                <!-- INDEX -->
 
                 <td>
-                  <span class="badge" [ngClass]="item.isActive ? 'bg-success' : 'bg-danger'">
-                    {{ item.isActive ? 'Active' : 'Inactive' }}
-                  </span>
+                  <div class="index-badge">
+                    {{ $index + 1 }}
+                  </div>
                 </td>
 
-                <td class="text-center">
-                  <button class="btn btn-warning btn-sm me-2" (click)="onEdit(item)">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
+                <!-- DEPARTMENT -->
 
-                  <button class="btn btn-danger btn-sm" (click)="onDelete(item.departmentId)">
-                    <i class="bi bi-trash"></i>
-                  </button>
+                <td>
+                  <div class="department-profile">
+                    <div class="department-avatar">
+                      <i class="bi bi-building"></i>
+                    </div>
+
+                    <div>
+                      <div class="department-name">
+                        {{ item.departmentName }}
+                      </div>
+
+                      <div class="department-id">Department ID: #{{ item.departmentId }}</div>
+                    </div>
+                  </div>
+                </td>
+
+                <!-- STATUS -->
+
+                <td>
+                  @if (item.isActive) {
+                    <span class="status-pill active">
+                      <span class="status-dot"></span>
+
+                      Active
+                    </span>
+                  } @else {
+                    <span class="status-pill inactive">
+                      <span class="status-dot"></span>
+
+                      Inactive
+                    </span>
+                  }
+                </td>
+
+                <!-- ACTIONS -->
+
+                <td>
+                  <div class="action-buttons">
+                    <!-- EDIT -->
+
+                    <button
+                      type="button"
+                      class="table-action edit-action"
+                      (click)="onEdit(item)"
+                      title="Edit Department"
+                    >
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+
+                    <!-- DELETE -->
+
+                    <button
+                      type="button"
+                      class="table-action delete-action"
+                      (click)="onDelete(item.departmentId)"
+                      title="Delete Department"
+                    >
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+
+            <!-- ================================= -->
+            <!-- EMPTY STATE -->
+            <!-- ================================= -->
+
+            @if (deptList().length === 0) {
+              <tr>
+                <td colspan="4">
+                  <div class="empty-state">
+                    <div class="empty-icon">
+                      <i class="bi bi-building"></i>
+                    </div>
+
+                    <h5>No Departments Found</h5>
+
+                    <p>Create your first department using the form above.</p>
+                  </div>
                 </td>
               </tr>
             }
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================= -->
+
+    <div class="page-footer">
+      <span> Department Management </span>
+
+      <span> Employee Management System </span>
     </div>
   </div>
 </div>
