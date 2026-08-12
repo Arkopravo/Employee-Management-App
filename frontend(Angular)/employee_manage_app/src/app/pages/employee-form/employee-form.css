@@ -1,63 +1,525 @@
-.page-header {
-  margin-bottom: 25px;
+/* =========================================================
+   PAGE
+========================================================= */
+
+.employee-page {
+  min-height: 100vh;
+
+  background: #f7f8fc;
+
+  color: #1f2937;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.breadcrumb-text {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #98a1b2;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+.breadcrumb-text i {
+  font-size: 9px;
+
+  color: #c1c7d0;
 }
 
 .page-title {
-  font-weight: 600;
-  color: #212529;
+  color: #171b26;
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
 }
 
 .page-subtitle {
-  color: #6c757d;
-  margin-bottom: 0;
+  color: #8b95a7;
+
+  font-size: 13px;
 }
 
-.modern-card {
+/* =========================================================
+   HEADER BADGE
+========================================================= */
+
+.header-badge {
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #e8eaf0;
+
+  border-radius: 10px;
+
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+}
+
+.header-badge-icon {
+  width: 36px;
+
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 8px;
+
+  color: #6366f1;
+
+  background: #f0efff;
+}
+
+.header-badge small {
+  display: block;
+
+  color: #9ba3b2;
+
+  font-size: 9px;
+}
+
+.header-badge strong {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #343a46;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.form-card {
   padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  border: 1px solid #e8eaf0;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.025);
 }
 
-.section-title {
-  border-bottom: 1px solid #e9ecef;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.card-heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
 }
 
-.section-title h5 {
-  margin-bottom: 4px;
+.heading-icon {
+  width: 40px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  font-size: 15px;
+}
+
+.heading-icon.purple {
+  color: #6366f1;
+
+  background: #f0efff;
+}
+
+.heading-icon.blue {
+  color: #0284c7;
+
+  background: #eaf7ff;
+}
+
+.heading-icon.green {
+  color: #16a34a;
+
+  background: #ebf9ef;
+}
+
+.heading-icon.orange {
+  color: #ea580c;
+
+  background: #fff3e9;
+}
+
+.card-heading h5 {
+  margin: 0;
+
+  color: #252a35;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+.card-heading p {
+  margin: 3px 0 0;
+
+  color: #9aa2b1;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider {
+  height: 1px;
+
+  margin: 22px 0;
+
+  background: #edf0f4;
+}
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.form-label {
+  margin-bottom: 7px;
+
+  color: #4b5563;
+
+  font-size: 11px;
+
   font-weight: 600;
 }
 
-.section-title p {
-  margin-bottom: 0;
-  color: #6c757d;
+.form-label span {
+  color: #ef4444;
+
+  margin-left: 2px;
+}
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-group-modern {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+}
+
+.input-group-modern > i {
+  position: absolute;
+
+  left: 14px;
+
+  z-index: 2;
+
+  color: #9aa3b2;
+
   font-size: 14px;
+
+  pointer-events: none;
 }
 
-.form-label {
-  font-weight: 500;
-  margin-bottom: 7px;
-}
+.input-group-modern input,
+.input-group-modern select {
+  width: 100%;
 
-.required {
-  color: #dc3545;
-}
+  height: 43px;
 
-.form-control,
-.form-select {
-  min-height: 44px;
+  padding: 0 14px 0 40px;
+
+  border: 1px solid #dfe3e9;
+
   border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #303641;
+
+  font-size: 12px;
+
+  transition: all 0.18s ease;
 }
 
-textarea.form-control {
-  min-height: 100px;
+.input-group-modern input::placeholder {
+  color: #b2b8c3;
 }
 
-.btn {
+.input-group-modern input:hover,
+.input-group-modern select:hover {
+  border-color: #c8ced8;
+}
+
+.input-group-modern input:focus,
+.input-group-modern select:focus {
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+.input-group-modern input:focus + i {
+  color: #6366f1;
+}
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.input-group-modern select {
+  appearance: auto;
+
+  cursor: pointer;
+}
+
+.input-group-modern select:disabled,
+.input-group-modern input:disabled {
+  background: #f5f6f8;
+
+  color: #9aa1ad;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.textarea-modern {
+  position: relative;
+}
+
+.textarea-modern > i {
+  position: absolute;
+
+  top: 14px;
+
+  left: 14px;
+
+  color: #9aa3b2;
+
+  font-size: 14px;
+
+  z-index: 2;
+}
+
+.textarea-modern textarea {
+  width: 100%;
+
+  min-height: 105px;
+
+  padding: 13px 14px 13px 40px;
+
+  resize: vertical;
+
+  border: 1px solid #dfe3e9;
+
   border-radius: 8px;
-  padding: 9px 20px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #303641;
+
+  font-size: 12px;
+
+  transition: all 0.18s ease;
+}
+
+.textarea-modern textarea::placeholder {
+  color: #b2b8c3;
+}
+
+.textarea-modern textarea:focus {
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+/* =========================================================
+   ACTION CARD
+========================================================= */
+
+.action-card {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 18px 22px;
+
+  border: 1px solid #e5e8ee;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.025);
+}
+
+.action-card h6 {
+  margin: 0;
+
+  color: #252a35;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.action-card p {
+  margin: 4px 0 0;
+
+  color: #9aa2b1;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.action-buttons {
+  display: flex;
+
+  gap: 8px;
+}
+
+.btn-modern {
+  height: 40px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 17px;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  transition: all 0.18s ease;
+}
+
+.btn-primary-modern {
+  border: 1px solid #6366f1;
+
+  background: #6366f1;
+
+  color: #ffffff;
+
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.18);
+}
+
+.btn-primary-modern:hover {
+  background: #5558e8;
+
+  border-color: #5558e8;
+
+  color: #ffffff;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 6px 14px rgba(99, 102, 241, 0.22);
+}
+
+.btn-light-modern {
+  border: 1px solid #dfe3e9;
+
+  background: #ffffff;
+
+  color: #687180;
+}
+
+.btn-light-modern:hover {
+  background: #f8f9fb;
+
+  border-color: #cfd4dc;
+
+  color: #374151;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 16px !important;
+
+    padding-right: 16px !important;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .action-card {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+
+  .btn-modern {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-modern {
+    width: 100%;
+  }
 }

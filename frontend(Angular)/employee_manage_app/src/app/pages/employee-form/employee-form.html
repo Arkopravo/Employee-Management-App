@@ -1,42 +1,73 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<div class="employee-page">
+  <div class="container-fluid px-4 py-4">
+    <!-- ================= HEADER ================= -->
 
-    <title>Employee Form</title>
-
-    <!-- Bootstrap 5 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
-
-  <body>
-    <div class="container py-5">
-      <!-- PAGE HEADER -->
-      <div class="page-header">
-        <h2 class="page-title">Employee Management</h2>
-        <p class="page-subtitle">Create and manage employee information</p>
-      </div>
-
-      <!-- ================= PERSONAL DETAILS ================= -->
-      <div class="modern-card">
-        <div class="section-title">
-          <h5>Personal Details</h5>
-          <p>Enter the employee's basic personal information</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <div class="breadcrumb-text mb-2">
+          <span>Employees</span>
+          <i class="bi bi-chevron-right"></i>
+          <span>
+            {{ newEmployeeObj.employeeId == 0 ? 'Add Employee' : 'Edit Employee' }}
+          </span>
         </div>
 
-        <div class="row g-4">
-          <!-- Name -->
-          <div class="col-md-6">
-            <label class="form-label"> Employee Name <span class="required">*</span> </label>
+        <h2 class="page-title mb-1">
+          {{ newEmployeeObj.employeeId == 0 ? 'Add Employee' : 'Edit Employee' }}
+        </h2>
+
+        <p class="page-subtitle mb-0">
+          {{
+            newEmployeeObj.employeeId == 0
+              ? 'Create a new employee profile and assign their role.'
+              : 'Update employee information and employment details.'
+          }}
+        </p>
+      </div>
+
+      <div class="header-badge d-none d-md-flex">
+        <div class="header-badge-icon">
+          <i class="bi bi-people-fill"></i>
+        </div>
+
+        <div>
+          <small>Employee Management</small>
+          <strong>Profile</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PERSONAL INFORMATION ================= -->
+
+    <div class="form-card mb-4">
+      <div class="card-heading">
+        <div class="heading-icon purple">
+          <i class="bi bi-person"></i>
+        </div>
+
+        <div>
+          <h5>Personal Information</h5>
+          <p>Basic information about the employee</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row g-4">
+        <!-- Employee Name -->
+
+        <div class="col-lg-6">
+          <label class="form-label">
+            Employee Name
+            <span>*</span>
+          </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-person"></i>
 
             <input
               type="text"
               [(ngModel)]="newEmployeeObj.name"
-              class="form-control"
               placeholder="Enter employee name"
               maxlength="50"
               [disabled]="loggedEmpData.role !== 'HR'"
@@ -44,174 +75,293 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ================= CONTACT DETAILS ================= -->
-      <div class="modern-card">
-        <div class="section-title">
-          <h5>Contact Details</h5>
-          <p>Enter the employee's contact and communication information</p>
+    <!-- ================= CONTACT INFORMATION ================= -->
+
+    <div class="form-card mb-4">
+      <div class="card-heading">
+        <div class="heading-icon blue">
+          <i class="bi bi-telephone"></i>
         </div>
 
-        <div class="row g-4">
-          <!-- Contact Number -->
-          <div class="col-md-6">
-            <label class="form-label"> Contact Number <span class="required">*</span> </label>
+        <div>
+          <h5>Contact Information</h5>
+          <p>Employee contact and communication details</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row g-4">
+        <!-- Contact -->
+
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label">
+            Contact Number
+            <span>*</span>
+          </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-phone"></i>
 
             <input
               type="tel"
               [(ngModel)]="newEmployeeObj.contactNo"
-              class="form-control"
               placeholder="Enter 10 digit contact number"
               maxlength="10"
             />
           </div>
+        </div>
 
-          <!-- Alternate Contact -->
-          <div class="col-md-6">
-            <label class="form-label"> Alternate Contact Number </label>
+        <!-- Alternate Contact -->
+
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label"> Alternate Contact </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-telephone"></i>
 
             <input
               type="tel"
               [(ngModel)]="newEmployeeObj.altContactNo"
-              class="form-control"
-              placeholder="Enter alternate contact number"
+              placeholder="Enter alternate number"
               maxlength="10"
             />
           </div>
+        </div>
 
-          <!-- Email -->
-          <div class="col-md-6">
-            <label class="form-label"> Email Address <span class="required">*</span> </label>
+        <!-- Email -->
+
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label">
+            Email Address
+            <span>*</span>
+          </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-envelope"></i>
 
             <input
               type="email"
               [(ngModel)]="newEmployeeObj.email"
-              class="form-control"
-              placeholder="example@email.com"
+              placeholder="employee@example.com"
               maxlength="50"
             />
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ================= ADDRESS DETAILS ================= -->
-      <div class="modern-card">
-        <div class="section-title">
-          <h5>Address Details</h5>
-          <p>Enter the employee's residential address</p>
+    <!-- ================= ADDRESS ================= -->
+
+    <div class="form-card mb-4">
+      <div class="card-heading">
+        <div class="heading-icon green">
+          <i class="bi bi-geo-alt"></i>
         </div>
 
-        <div class="row g-4">
-          <!-- State -->
-          <div class="col-md-6">
-            <label class="form-label"> State <span class="required">*</span> </label>
+        <div>
+          <h5>Address</h5>
+          <p>Employee residential address information</p>
+        </div>
+      </div>
 
-            <select class="form-select" name="state" [(ngModel)]="newEmployeeObj.state">
+      <div class="divider"></div>
+
+      <div class="row g-4">
+        <!-- State -->
+
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label">
+            State
+            <span>*</span>
+          </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-map"></i>
+
+            <select name="state" [(ngModel)]="newEmployeeObj.state">
               <option value="">Select State</option>
+
               <option value="West Bengal">West Bengal</option>
+
               <option value="Maharashtra">Maharashtra</option>
+
               <option value="Karnataka">Karnataka</option>
+
               <option value="Delhi">Delhi</option>
+
               <option value="Tamil Nadu">Tamil Nadu</option>
             </select>
           </div>
+        </div>
 
-          <!-- City -->
-          <div class="col-md-6">
-            <label class="form-label"> City <span class="required">*</span> </label>
+        <!-- City -->
+
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label">
+            City
+            <span>*</span>
+          </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-buildings"></i>
 
             <input
               type="text"
               name="city"
               [(ngModel)]="newEmployeeObj.city"
-              class="form-control"
               placeholder="Enter city"
               maxlength="50"
             />
           </div>
+        </div>
 
-          <!-- Pincode -->
-          <div class="col-md-6">
-            <label class="form-label"> Pincode <span class="required">*</span> </label>
+        <!-- Pincode -->
+
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label">
+            Pincode
+            <span>*</span>
+          </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-mailbox"></i>
 
             <input
               type="text"
               name="pincode"
               [(ngModel)]="newEmployeeObj.pincode"
-              class="form-control"
               placeholder="Enter 6 digit pincode"
               minlength="6"
               maxlength="6"
             />
           </div>
+        </div>
 
-          <!-- Address -->
-          <div class="col-12">
-            <label class="form-label"> Address <span class="required">*</span> </label>
+        <!-- Address -->
+
+        <div class="col-12">
+          <label class="form-label">
+            Complete Address
+            <span>*</span>
+          </label>
+
+          <div class="textarea-modern">
+            <i class="bi bi-house"></i>
 
             <textarea
               name="address"
               [(ngModel)]="newEmployeeObj.address"
-              class="form-control"
-              placeholder="Enter complete address"
+              placeholder="Enter complete residential address"
               maxlength="50"
             ></textarea>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ================= EMPLOYMENT DETAILS ================= -->
-      <div class="modern-card">
-        <div class="section-title">
-          <h5>Employment Details</h5>
-          <p>Enter the employee's organization and designation information</p>
+    <!-- ================= EMPLOYMENT ================= -->
+
+    <div class="form-card mb-4">
+      <div class="card-heading">
+        <div class="heading-icon orange">
+          <i class="bi bi-briefcase"></i>
         </div>
 
-        <div class="row g-4">
-          <!-- Designation -->
-          <div class="col-md-6">
-            <label class="form-label"> Designation <span class="required">*</span> </label>
+        <div>
+          <h5>Employment Details</h5>
+          <p>Organization, designation and access information</p>
+        </div>
+      </div>
 
-            <select class="form-select" [(ngModel)]="newEmployeeObj.designationId" [disabled]="loggedEmpData.role !== 'HR'">
+      <div class="divider"></div>
+
+      <div class="row g-4">
+        <!-- Designation -->
+
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label">
+            Designation
+            <span>*</span>
+          </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-person-badge"></i>
+
+            <select
+              [(ngModel)]="newEmployeeObj.designationId"
+              [disabled]="loggedEmpData.role !== 'HR'"
+            >
               <option value="">Select Designation</option>
-              @for (item of $designationList | async; track $index) {
+
+              @for (item of $designationList | async; track item.designationId) {
                 <option [value]="item.designationId">
-                  {{ item.designationName }} ({{ item.departmentName }})
+                  {{ item.designationName }}
+                  ({{ item.departmentName }})
                 </option>
               }
             </select>
           </div>
+        </div>
 
-          <!-- Role -->
-          <div class="col-md-6">
-            <label class="form-label"> Role </label>
+        <!-- Role -->
 
-            <select class="form-select" [(ngModel)]="newEmployeeObj.role" [disabled]="loggedEmpData.role !== 'HR'">
+        <div class="col-lg-6 col-md-6">
+          <label class="form-label"> Role </label>
+
+          <div class="input-group-modern">
+            <i class="bi bi-shield-check"></i>
+
+            <select [(ngModel)]="newEmployeeObj.role" [disabled]="loggedEmpData.role !== 'HR'">
               <option value="">Select Role</option>
-              <option>Employee</option>
-              <option>HR</option>
+
+              <option value="Employee">Employee</option>
+
+              <option value="HR">HR</option>
             </select>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ================= ACTION BUTTONS ================= -->
-      <div class="modern-card">
-        <div class="d-flex justify-content-end gap-2">
-          @if(newEmployeeObj.employeeId == 0) {
-            <button type="button" class="btn btn-primary" (click)="onSaveEmployee()">
-              Save Employee
-          </button>
-          } @else {
-            <button type="button" class="btn btn-primary" (click)="onUpdateEmployee(newEmployeeObj.employeeId)">
-              Update Employee
-          </button>
-          }
-          <button type="button" class="btn btn-outline-secondary">Reset</button>
+    <!-- ================= ACTION BAR ================= -->
 
-          
-        </div>
+    <div class="action-card">
+      <div>
+        <h6>
+          {{ newEmployeeObj.employeeId == 0 ? 'Create Employee' : 'Update Employee' }}
+        </h6>
+
+        <p>Review the information before saving your changes.</p>
+      </div>
+
+      <div class="action-buttons">
+        @if (newEmployeeObj.employeeId == 0) {
+          <button type="button" class="btn-modern btn-primary-modern" (click)="onSaveEmployee()">
+            <i class="bi bi-check-lg"></i>
+
+            Save Employee
+          </button>
+        } @else {
+          <button
+            type="button"
+            class="btn-modern btn-primary-modern"
+            (click)="onUpdateEmployee(newEmployeeObj.employeeId)"
+          >
+            <i class="bi bi-check-lg"></i>
+
+            Update Employee
+          </button>
+        }
+
+        <button type="button" class="btn-modern btn-light-modern" (click)="onReset()">
+          <i class="bi bi-arrow-counterclockwise"></i>
+
+          Reset
+        </button>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>
